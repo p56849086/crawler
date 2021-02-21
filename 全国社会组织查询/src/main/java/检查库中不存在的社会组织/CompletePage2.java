@@ -57,7 +57,7 @@ public class CompletePage2 {
     String requestTable1() throws URISyntaxException {
 
         // 设定url
-        String url = "http://www.chinanpo.gov.cn/search/poporg.html?i=" + i + "&u=" + unifiedCode;
+        String url = "http://59.252.100.194/search/poporg.html?i=" + i + "&u=" + unifiedCode;
         this.Referer_url2 = url;
         // 插入请求头
         for (Headers1 header1 : Headers1.values()){
@@ -106,7 +106,7 @@ public class CompletePage2 {
     // 请求第二个页面
     String  requestTable2() throws URISyntaxException {
         // 设定url
-        String url = "http://www.chinanpo.gov.cn/search/sxxx.html?unifiedCode=" + unifiedCode + "&type=1";
+        String url = "http://59.252.100.194/search/sxxx.html?unifiedCode=" + unifiedCode + "&type=1";
         this.Referer_url3 = url;
         // 首先删除已经存在的请求头
         for (Headers1 header1 : Headers1.values()){
@@ -157,7 +157,7 @@ public class CompletePage2 {
     // 请求第三个页面
     String requestTable3() throws URISyntaxException {
         // 设定url
-        String url = "http://www.chinanpo.gov.cn/search/showOrgMesg.do?action=showSXXXList&forward=sxxx&type=2&unifiedCode=" + unifiedCode;
+        String url = "http://59.252.100.194/search/showOrgMesg.do?action=showSXXXList&forward=sxxx&type=2&unifiedCode=" + unifiedCode;
 
         // 删除请求头
         for (Headers2 header2 : Headers2.values()){

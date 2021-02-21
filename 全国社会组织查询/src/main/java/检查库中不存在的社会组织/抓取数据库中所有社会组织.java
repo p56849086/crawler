@@ -13,7 +13,7 @@ import java.util.List;
 public class 抓取数据库中所有社会组织 {
     public static void main(String[] args) {
         MongoCollection<Document> sourse = new MongoClient("192.168.1.175", 27017).getDatabase("organization_data").getCollection("所有社会组织");
-        Document query = new Document("_id", new Document("$gte","1016224_51361125MJD3098448"));
+        Document query = new Document("_id", new Document("$gte","1016259_51360881MJD1364964"));
         FindIterable<Document> documents = sourse.find(query).sort(new Document("_id",1));
         GetIp getIp = new GetIp();
         int count = 1;
@@ -61,6 +61,7 @@ public class 抓取数据库中所有社会组织 {
             // 将获得的数据插入到数据库中
             InsertMogdb insertMogdb = new InsertMogdb(finallyData1, yichangList, weifaList, completePage2.getUnifiedCode());
             System.out.println("共完成数据" + count++ + ":" + document.get("_id"));
+            System.out.println(111);
         }
     }
 }
