@@ -43,7 +43,7 @@ public class 深交所问答信息 {
             String stockCode = xssfRow.getCell(0).getStringCellValue();//公司代码
             String secid_stockCode = xssfRow.getCell(3).getStringCellValue();//公司代码
 //            xssfRow.getCell(4).setCellType(CellType.STRING);
-            String flag = xssfRow.getCell(4).getStringCellValue();//判断stockCodes参数是否为空
+            String flag = xssfRow.getCell(4).toString().replace(".0","");//判断stockCodes参数是否为空
             System.err.println("正在获取第 -" + i + "- 家公司问答信息！共 -" + rowCount + "- 家公司！当前公司代码：" + stockCode);
             for(int y=0;y<yearArray.length;y++) {
                 String year = yearArray[y];
