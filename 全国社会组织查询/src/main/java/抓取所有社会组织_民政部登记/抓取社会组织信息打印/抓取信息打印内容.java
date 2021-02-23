@@ -20,6 +20,7 @@ public class 抓取信息打印内容 {
             listAll.getOrganization().set统一社会信用代码(document.getString("统一社会信用代码"));
             listAll.getOrganization().setOrgId(document.getString("OrgId"));
             InsertMongodb.InsertMongodb(listAll);
+            System.out.println("第" + count++ + "条数据，正在进行_id:" + document.get("_id"));
         }
     }
 
