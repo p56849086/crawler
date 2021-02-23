@@ -61,7 +61,6 @@ public class 抓取数据库中所有社会组织 {
             // 将获得的数据插入到数据库中
             InsertMogdb insertMogdb = new InsertMogdb(finallyData1, yichangList, weifaList, completePage2.getUnifiedCode());
             System.out.println("共完成数据" + count++ + ":" + document.get("_id"));
-            System.out.println(111);
         }
     }
 }

@@ -69,7 +69,7 @@ public class ReqeustBase {
             switch (this.Type) {
                 // 传入的Data为?后的数据
                 case "get":
-                    httpGet.setURI(new URI(this.url + "Data"));
+                    httpGet.setURI(new URI(this.url + Data));
                     break;
                 case "post":
                     stringEntity = new StringEntity(Data, ContentType.MULTIPART_FORM_DATA);		//推荐的方法
