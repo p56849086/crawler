@@ -14,8 +14,14 @@ public class 抓取信息打印内容 {
         Document qurey = new Document("_id", new Document("$gte", ""));
         FindIterable<Document> documents = sourse.find(qurey).sort(new Document("_id", 1));
         RequestXinXiDaYinGongShi requestXinXiDaYinGongShi = new RequestXinXiDaYinGongShi(new GetIp(), "get", "http://59.252.100.194/search/");
+        int count=1;
         for (Document document: documents){
             String url = document.getString("信息打印URL");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             ListAll listAll = (ListAll) requestXinXiDaYinGongShi.dealPage(requestXinXiDaYinGongShi.requestGetPage(url));
             listAll.getOrganization().set统一社会信用代码(document.getString("统一社会信用代码"));
             listAll.getOrganization().setOrgId(document.getString("OrgId"));
