@@ -29,13 +29,13 @@ import java.net.URISyntaxException;
 public class ReqeustBase {
     public HttpPost httpPost;
     public HttpGet httpGet;
-    GetIp getIp;
-    CloseableHttpClient httpClient = HttpClients.createDefault();
-    CloseableHttpResponse response;
+    public GetIp getIp;
+    public CloseableHttpClient httpClient = HttpClients.createDefault();
+    public CloseableHttpResponse response;
     // 用于确定传入请求的类型
-    String Type;
+    public String Type;
     // 请求地址
-    String url;
+    public String url;
 
     // 设置初始配置
     public ReqeustBase(GetIp getIp, String type, String url) {
@@ -113,6 +113,54 @@ public class ReqeustBase {
             }
         }
     }
+
+    public byte[] requestGetPage2(String Data) {
+        // 设置url
+        try {
+            StringEntity stringEntity;
+            switch (this.Type) {
+                // 传入的Data为?后的数据
+                case "get":
+                    httpGet.setURI(new URI(this.url + Data));
+                    break;
+                case "post":
+                    stringEntity = new StringEntity(Data, ContentType.MULTIPART_FORM_DATA);		//推荐的方法
+                    httpPost.setURI(new URI(this.url));
+                    httpPost.setEntity(stringEntity);
+                    break;
+            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        // 循环请求保证出错可以重试
+        while (true){
+            try {
+                if ("get".equals(this.Type)) {
+                    response = httpClient.execute(httpGet);
+                }else {
+                    response = httpClient.execute(httpPost);
+                }
+                if(response.getStatusLine().getStatusCode() == 200) {
+                    byte[] html = EntityUtils.toByteArray(response.getEntity());
+                    return html;
+                }else {
+                    System.out.println("请求代码：" + response.getStatusLine().getStatusCode() + "更换Ip开始重试");
+                }
+            } catch (SocketTimeoutException e){
+                System.out.println("请求超时，重试");
+                continue;
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("请求网页出错，重试");
+                continue;
+            }finally {
+                if (response != null){
+                    EntityUtils.consumeQuietly(response.getEntity());
+                }
+            }
+        }
+    }
+
 
     // 处理页面
     public Object dealPage(String html){

@@ -28,7 +28,6 @@ public class RequestMinZB extends ReqeustBase{
                 }
                 break;
         }
-        // 设置请求参数
     }
 
     // 处理页面
