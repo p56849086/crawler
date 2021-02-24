@@ -141,6 +141,8 @@ public class GetHtml_Post {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                if ("timeout".equals(e.getMessage()))
+                    continue;
                 String qiyunIP = null;
                 try {
                     qiyunIP = getQiyunIP.getIP(qiyunLink);
